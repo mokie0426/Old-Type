@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>oLd tYP3</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Special Elite, Courier Prime, Newsreader, Caveat, and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- html2canvas for Image Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --desk-bg: #dfd8cc;
+      --paper-bg: #fcf9f2;
+      --paper-border: #e5dec9;
+      --ink-color: #24211e;
+      --accent-gold: #b45309;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--desk-bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.45), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(82, 66, 48, 0.025) 0px, rgba(82, 66, 48, 0.025) 1px, transparent 1px, transparent 12px);
+      transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.6s ease;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Typewriter Fonts */
+    .font-typewriter-vintage {
+      font-family: 'Special Elite', 'Courier Prime', monospace;
+    }
+    .font-typewriter-clean {
+      font-family: 'Courier Prime', monospace;
+    }
+    .font-typewriter-serif {
+      font-family: 'Newsreader', Georgia, serif;
+    }
+    .font-vintage-cursive {
+      font-family: 'Caveat', cursive;
+    }
+
+    /* Enhanced Paper Textures with Micro-Grain & Deckled Depth */
+    .paper-cream {
+      background-color: #fcf9f2;
+      background-image: 
+        radial-gradient(rgba(139, 115, 85, 0.07) 1px, transparent 0),
+        linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(242,234,218,0.3) 100%);
+      background-size: 14px 14px, 100% 100%;
+      box-shadow: 
+        0 28px 60px -15px rgba(28, 22, 15, 0.24),
+        0 10px 24px -6px rgba(28, 22, 15, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    .paper-cotton {
+      background-color: #f5f2eb;
+      background-image: 
+        linear-gradient(90deg, rgba(0,0,0,0.018) 50%, transparent 50%),
+        linear-gradient(rgba(0,0,0,0.018) 50%, transparent 50%),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 80%);
+      background-size: 3px 3px, 3px 3px, 100% 100%;
+      box-shadow: 
+        0 28px 60px -15px rgba(28, 22, 15, 0.26),
+        0 10px 24px -6px rgba(28, 22, 15, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    }
+    .paper-aged {
+      background-color: #efe3ca;
+      background-image: 
+        radial-gradient(circle at 18% 18%, rgba(168, 125, 62, 0.13), transparent 58%),
+        radial-gradient(circle at 82% 85%, rgba(138, 94, 42, 0.15), transparent 55%),
+        radial-gradient(rgba(110, 80, 40, 0.06) 1px, transparent 0);
+      background-size: 100% 100%, 100% 100%, 12px 12px;
+      box-shadow: 
+        0 28px 60px -15px rgba(45, 30, 12, 0.3),
+        0 10px 24px -6px rgba(45, 30, 12, 0.16),
+        inset 0 0 24px rgba(166, 128, 72, 0.12);
+    }
+    .paper-ruled {
+      background-color: #faf8f5;
+      background-image: 
+        linear-gradient(90deg, transparent 42px, rgba(225, 115, 115, 0.22) 42px, rgba(225, 115, 115, 0.22) 43px, transparent 43px),
+        repeating-linear-gradient(transparent, transparent 31px, rgba(130, 155, 185, 0.26) 32px);
+      background-position: 0 0, 0 14px;
+      box-shadow: 
+        0 28px 60px -15px rgba(25, 35, 50, 0.22),
+        0 10px 24px -6px rgba(25, 35, 50, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    /* Curved Paper Effect */
+    .paper-curved {
+      border-radius: 6px 6px 20px 20px;
+      transform: perspective(1400px) rotateX(1.1deg);
+    }
+
+    /* Ink Ribbon Colors & Wear Effects */
+    .ink-black { color: #1d1b19; }
+    .ink-crimson { color: #8c2121; }
+    .ink-navy { color: #192e4d; }
+    .ink-forest { color: #1e3b29; }
+
+    .wear-fresh {
+      text-shadow: 0 0 0.4px currentColor;
+      opacity: 0.98;
+    }
+    .wear-seasoned {
+      text-shadow: 0.6px 0.3px 0.8px rgba(0, 0, 0, 0.24), -0.4px 0 0.5px rgba(0, 0, 0, 0.14);
+      opacity: 0.91;
+    }
+    .wear-worn {
+      text-shadow: 1.1px 0.6px 1.3px rgba(0, 0, 0, 0.2), -0.8px -0.3px 0.9px rgba(0, 0, 0, 0.15);
+      opacity: 0.76;
+      filter: contrast(0.92);
+    }
+    .wear-clean {
+      text-shadow: none;
+      opacity: 1;
+    }
+
+    /* Animated UI Choreography & Tactile Spring Physics */
+    @keyframes floatInDown {
+      0% { opacity: 0; transform: translateY(-18px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes floatInUp {
+      0% { opacity: 0; transform: translateY(22px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes paperFeedIn {
+      0% { opacity: 0; transform: translateY(36px) perspective(1400px) rotateX(4deg) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) perspective(1400px) rotateX(1.1deg) scale(1); }
+    }
+    @keyframes paperSwapRoll {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      40% { transform: translateY(-28px) scale(0.97); opacity: 0.2; }
+      45% { transform: translateY(32px) scale(0.97); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    @keyframes pillPopIn {
+      0% { opacity: 0; transform: translateY(6px) scale(0.94); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes modalBackdropFade {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes modalCardSpring {
+      0% { opacity: 0; transform: translateY(18px) scale(0.94); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes waxStampPress {
+      0% { transform: scale(1.6) rotate(-18deg); opacity: 0; }
+      60% { transform: scale(0.92) rotate(4deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    @keyframes flowerBloom {
+      0% { transform: scale(0.5) rotate(-25deg); opacity: 0; }
+      70% { transform: scale(1.12) rotate(6deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    @keyframes ambientDeskShimmer {
+      0%, 100% { background-position: 50% 0%, 0 0; }
+      50% { background-position: 52% 4%, 12px 0; }
+    }
+
+    body {
+      animation: ambientDeskShimmer 14s ease-in-out infinite;
+    }
+
+    .anim-header {
+      animation: floatInDown 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .anim-rail {
+      animation: floatInDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+    }
+    .anim-paper-entrance {
+      animation: paperFeedIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+    }
+    .anim-dock {
+      animation: floatInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+    }
+    .paper-rolling {
+      animation: paperSwapRoll 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .drawer-item-anim {
+      animation: pillPopIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .modal-backdrop-anim {
+      animation: modalBackdropFade 0.28s ease-out both;
+    }
+    .modal-card-anim {
+      animation: modalCardSpring 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .wax-press-anim {
+      animation: waxStampPress 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .flower-bloom-anim {
+      animation: flowerBloom 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Frosted Glass & Brass Studio Controls with Spring Hover Lift */
+    .studio-pill {
+      background: rgba(255, 253, 249, 0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(168, 155, 138, 0.38);
+      box-shadow: 0 4px 14px -2px rgba(28, 22, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .studio-pill:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(180, 83, 9, 0.35);
+      box-shadow: 0 8px 20px -4px rgba(28, 22, 15, 0.14), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .studio-pill:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    .studio-dock {
+      background: rgba(252, 249, 242, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(168, 155, 138, 0.4);
+      box-shadow: 0 20px 45px -10px rgba(24, 18, 12, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+    .studio-dock:hover {
+      box-shadow: 0 24px 52px -10px rgba(24, 18, 12, 0.2), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    /* Typewriter Carriage Rail & Capsule Animation */
+    @keyframes charmSway {
+      0%, 100% { transform: rotate(-4deg); }
+      50% { transform: rotate(5deg); }
+    }
+    .charm-sway {
+      transform-origin: top center;
+      animation: charmSway 3.2s ease-in-out infinite;
+    }
+    .charm-strike {
+      animation: charmStrike 0.25s ease-out;
+    }
+    @keyframes charmStrike {
+      0% { transform: rotate(0deg) translateY(0); }
+      35% { transform: rotate(15deg) translateY(-2px); }
+      70% { transform: rotate(-10deg) translateY(0); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    /* Mechanical Typebar Strike Flash */
+    @keyframes hammerUp {
+      0% { transform: translateY(16px) scaleY(0.4); opacity: 0; }
+      40% { transform: translateY(0px) scaleY(1); opacity: 0.95; }
+      100% { transform: translateY(14px) scaleY(0.5); opacity: 0; }
+    }
+    .typebar-active {
+      animation: hammerUp 0.14s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Wax Seal Stamp Emboss */
+    .wax-seal-badge {
+      background: radial-gradient(circle at 32% 30%, #b91c1c, #7f1d1d 68%, #450a0a 100%);
+      box-shadow:
+        0 6px 14px rgba(69, 10, 10, 0.42),
+        inset 0 2px 3px rgba(255, 180, 180, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(120, 113, 108, 0.28);
+      border-radius: 9999px;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #paper-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 1in !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-stone-800 selection:bg-amber-200/70">
+
+  <!-- Toast Notification Banner -->
+  <div id="toast-banner" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-[-10px]">
+    <div class="bg-stone-900/95 text-stone-50 backdrop-blur-md px-4 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 border border-amber-500/30">
+      <span id="toast-icon" class="text-amber-400">✦</span>
+      <span id="toast-message">Saved to The Box</span>
+    </div>
+  </div>
+
+  <!-- Top Navigation & Mechanical Rail Bar -->
+  <header class="anim-header no-print relative z-20 w-full max-w-5xl mx-auto px-4 pt-4 pb-2 flex items-center justify-between gap-2">
+    <!-- Left: The Box (Archive) & New Sheet -->
+    <div class="flex items-center gap-2">
+      <button id="btn-open-box" class="studio-pill flex items-center gap-2 px-3.5 py-2 rounded-full text-stone-700 text-xs font-medium group" title="Open The Box (Saved Letters)">
+        <i data-lucide="archive" class="w-4 h-4 text-amber-700 group-hover:scale-110 transition-transform duration-200"></i>
+        <span>The Box</span>
+        <span id="box-count-badge" class="ml-0.5 px-1.5 py-0.2 bg-amber-800/15 text-amber-900 rounded-full text-[10px] font-semibold transition-transform group-hover:scale-110">1</span>
+      </button>
+
+      <button id="btn-new-note" class="studio-pill flex items-center gap-1.5 px-3.5 py-2 rounded-full text-stone-700 text-xs font-medium group" title="Insert Fresh Sheet">
+        <i data-lucide="file-plus-2" class="w-4 h-4 text-amber-700 group-hover:rotate-6 transition-transform duration-200"></i>
+        <span class="hidden sm:inline">New Sheet</span>
+      </button>
+    </div>
+
+    <!-- Center: Brand & First Line Inspiration -->
+    <div class="flex items-center gap-2">
+      <span class="hidden md:inline-block font-typewriter-vintage text-sm tracking-wider text-stone-800 px-2 select-none">oLd tYP3</span>
+      <button id="btn-first-line" class="studio-pill flex items-center gap-1.5 px-4 py-2 rounded-full text-stone-800 text-xs font-medium group" title="Insert Simple Quote or First Line">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-600 group-hover:rotate-45 group-hover:scale-110 transition-transform duration-300"></i>
+        <span>First Line</span>
+      </button>
+    </div>
+
+    <!-- Right: Sound & Export -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <button id="btn-toggle-sound" class="studio-pill p-2.5 rounded-full text-stone-700 group" title="Toggle Mechanical Sound">
+        <i id="icon-sound" data-lucide="volume-2" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+      </button>
+
+      <button id="btn-export-modal" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-b from-stone-800 to-stone-950 hover:from-stone-700 hover:to-stone-900 text-amber-50 border border-stone-600/50 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 active:scale-95 text-xs font-medium group">
+        <i data-lucide="share" class="w-3.5 h-3.5 text-amber-300 group-hover:-translate-y-0.5 transition-transform"></i>
+        <span class="hidden sm:inline">Export</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Typewriter Workspace -->
+  <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-3 sm:px-6 py-4 w-full max-w-4xl mx-auto">
+
+    <!-- Precision Brushed-Brass Carriage Rail & Moving Capsule -->
+    <div id="carriage-rail-container" class="anim-rail no-print w-full max-w-2xl mb-4 transition-all duration-300">
+      <div class="relative h-10 flex items-center px-3">
+        <!-- Metallic Carriage Rail Bar with Brass End Caps -->
+        <div class="w-full h-2.5 rounded-full bg-gradient-to-b from-stone-300 via-stone-200 to-stone-400 shadow-inner border border-stone-500/40 relative flex items-center justify-between px-1">
+          <!-- Left Spinning Ribbon Spool -->
+          <span id="spool-left" class="w-4 h-4 -ml-2 rounded-full bg-gradient-to-tr from-stone-900 via-amber-700 to-amber-500 border border-amber-950 shadow flex items-center justify-center transition-transform duration-150">
+            <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+          </span>
+          <!-- Tick marks along rail -->
+          <div class="w-full flex justify-between px-3 opacity-45">
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+            <span class="w-[1px] h-1 bg-stone-800"></span>
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+            <span class="w-[1px] h-1 bg-stone-800"></span>
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+            <span class="w-[1px] h-1 bg-stone-800"></span>
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+            <span class="w-[1px] h-1 bg-stone-800"></span>
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+            <span class="w-[1px] h-1 bg-stone-800"></span>
+            <span class="w-[1px] h-1.5 bg-stone-800"></span>
+          </div>
+          <!-- Right Spinning Ribbon Spool -->
+          <span id="spool-right" class="w-4 h-4 -mr-2 rounded-full bg-gradient-to-tr from-stone-900 via-amber-700 to-amber-500 border border-amber-950 shadow flex items-center justify-center transition-transform duration-150">
+            <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+          </span>
+        </div>
+
+        <!-- Moving Typewriter Capsule & Hanging Charm -->
+        <div id="typewriter-capsule" class="absolute left-6 top-1/2 -translate-y-1/2 transition-all duration-150 ease-out flex flex-col items-center cursor-pointer select-none z-20 hover:scale-105" style="left: 8%;">
+          <!-- Capsule Body -->
+          <div class="px-3 py-1 rounded-full bg-gradient-to-b from-stone-800 via-stone-900 to-black text-amber-100 border border-amber-500/40 shadow-lg flex items-center gap-1.5 text-[10px] font-mono tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] animate-pulse"></span>
+            <span id="capsule-col-indicator">001</span>
+          </div>
+          <!-- Mechanical Typebar Striker Arm (Flashes upward on keystroke) -->
+          <div id="typebar-striker" class="w-1 h-4 bg-gradient-to-t from-stone-500 to-stone-200 rounded-t-sm opacity-0 pointer-events-none -mt-1"></div>
+          <!-- Hanging 3D-style Charm -->
+          <div id="hanging-charm" class="charm-sway -mt-2 text-xl drop-shadow-[0_4px_4px_rgba(0,0,0,0.35)] select-none" title="Your Typewriter Charm">
+            🗝️
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paper Sheet Surface -->
+    <div id="paper-sheet" class="anim-paper-entrance paper-cream paper-curved relative w-full max-w-2xl min-h-[58vh] sm:min-h-[64vh] px-6 sm:px-14 py-10 sm:py-14 transition-all duration-500 flex flex-col justify-between border border-stone-300/60 overflow-hidden">
+
+      <!-- Top Header inside Paper: Embossed Letterhead, Pressed Flower, & Date -->
+      <div class="relative z-10 flex items-start justify-between gap-4 mb-6 select-none">
+        <!-- Embossed Letterhead Mark -->
+        <div id="letterhead-display" class="text-[11px] uppercase tracking-[0.24em] text-stone-400/90 font-serif border-b border-stone-300/50 pb-1 transition-all duration-300">
+          FROM THE DESK OF oLd tYP3
+        </div>
+
+        <!-- Pressed Flower Bookmark & Photo Stamp Area -->
+        <div class="flex items-center gap-3">
+          <!-- Pressed Flower SVG -->
+          <div id="pressed-flower-slot" class="transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer" title="Click to cycle Pressed Flower">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional Photo Stamp Attachment -->
+      <div id="photo-stamp-container" class="hidden absolute z-20 top-20 right-8 rotate-2 hover:rotate-0 transition-shadow duration-200 bg-white p-2 pb-4 shadow-lg hover:shadow-xl border border-stone-200 group select-none cursor-grab active:cursor-grabbing touch-none" style="width: 148px;">
+        <img id="photo-stamp-img" src="" alt="Attached Stamp" draggable="false" class="w-full aspect-[4/3] object-cover grayscale contrast-110 pointer-events-none" />
+        <button id="btn-remove-photo" title="Remove Sticker" class="no-print absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-stone-800 text-white text-xs hidden group-hover:flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer">×</button>
+        <input
+          type="text"
+          id="photo-stamp-label"
+          maxlength="28"
+          placeholder="Memory Stamp"
+          title="Click to edit photo stamp caption"
+          class="font-vintage-cursive w-full bg-transparent border-none outline-none text-base leading-tight text-stone-700 focus:text-stone-950 text-center mt-1 tracking-normal placeholder:text-stone-300 cursor-text"
+        />
+        <!-- Bottom-Right Corner Resize Handle -->
+        <div id="photo-stamp-resize" title="Drag to resize sticker" class="no-print absolute bottom-0.5 right-0.5 w-4 h-4 cursor-nwse-resize opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-0.5 text-stone-400 hover:text-stone-800">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M9 1L1 9M9 5L5 9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+
+      <!-- Main Typing Area -->
+      <textarea
+        id="typewriter-editor"
+        maxlength="3000"
+        rows="10"
+        wrap="soft"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="Strike a key to begin your letter..."
+        class="relative z-10 w-full bg-transparent resize-none overflow-hidden break-words whitespace-pre-wrap border-none outline-none font-typewriter-vintage ink-black wear-fresh tracking-wide placeholder:text-stone-400/60 transition-colors duration-300"
+      ></textarea>
+
+      <!-- Paper Footer: Divider Tag, Date, Wax Seal & Character Meter (3,000 limit) -->
+      <div class="relative z-10 mt-8 pt-3 border-t border-stone-300/40 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-stone-400 select-none">
+        <div class="flex items-center gap-2">
+          <span id="note-date-display">NOV 25, 2026</span>
+          <span>•</span>
+          <span id="note-divider-display" class="uppercase tracking-wider text-stone-500">Journal</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Optional Wax Seal Stamp -->
+          <div id="wax-seal-slot" class="wax-press-anim hidden w-8 h-8 rounded-full wax-seal-badge flex items-center justify-center text-amber-200/90 font-serif text-[10px] font-bold tracking-tighter border border-red-950/60 select-none hover:scale-110 transition-transform" title="Official oLd tYP3 Wax Seal">
+            oT3
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span id="char-counter">0 / 3000</span>
+            <div class="w-14 h-1.5 bg-stone-200/80 rounded-full overflow-hidden">
+              <div id="char-progress" class="h-full bg-amber-700/80 transition-all duration-150" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Customization Studio Dock -->
+  <footer class="anim-dock no-print relative z-20 w-full max-w-4xl mx-auto px-3 pb-4 pt-1">
+    <div class="studio-dock rounded-2xl p-2 sm:p-2.5 flex flex-wrap items-center justify-between gap-2">
+
+      <!-- Customization Tabs -->
+      <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5">
+        <button data-drawer="paper" class="drawer-tab active flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-stone-800 text-white transition-all duration-200 active:scale-95">
+          <i data-lucide="scroll-text" class="w-3.5 h-3.5"></i>
+          <span>Paper</span>
+        </button>
+        <button data-drawer="ribbon" class="drawer-tab flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-200/70 transition-all duration-200 active:scale-95">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+          <span>Ribbon & Type</span>
+        </button>
+        <button data-drawer="decor" class="drawer-tab flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-200/70 transition-all duration-200 active:scale-95">
+          <i data-lucide="flower-2" class="w-3.5 h-3.5"></i>
+          <span>Charms & Flowers</span>
+        </button>
+        <button data-drawer="stationery" class="drawer-tab flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-200/70 transition-all duration-200 active:scale-95">
+          <i data-lucide="stamp" class="w-3.5 h-3.5"></i>
+          <span>Letterhead</span>
+        </button>
+      </div>
+
+      <!-- Active Drawer Controls -->
+      <div id="drawer-content" class="flex items-center gap-2 flex-wrap justify-end text-xs">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: The Box (Saved Notes & Dividers) -->
+  <div id="modal-box" class="modal-backdrop-anim fixed inset-0 z-50 hidden items-center justify-center bg-stone-950/60 backdrop-blur-md p-4">
+    <div class="modal-card-anim bg-[#f8f5ee] border border-stone-300 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[82vh] flex flex-col overflow-hidden">
+      <div class="px-5 py-4 border-b border-stone-200 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="archive" class="w-5 h-5 text-amber-800"></i>
+          <h2 class="font-serif text-lg font-medium text-stone-800">The Box — Filed Letters</h2>
+        </div>
+        <button id="btn-close-box" class="p-1.5 rounded-full hover:bg-stone-200/70 hover:rotate-90 transition-all duration-200 text-stone-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Divider Filter Pills -->
+      <div class="px-5 py-2.5 bg-stone-100/80 border-b border-stone-200 flex items-center gap-2 overflow-x-auto text-xs">
+        <button data-filter="All" class="box-filter-btn px-3 py-1 rounded-full bg-stone-800 text-white font-medium transition-all duration-200 active:scale-95">All</button>
+        <button data-filter="Journal" class="box-filter-btn px-3 py-1 rounded-full bg-white text-stone-700 border border-stone-300 hover:bg-stone-50 transition-all duration-200 active:scale-95">Journal</button>
+        <button data-filter="Letters" class="box-filter-btn px-3 py-1 rounded-full bg-white text-stone-700 border border-stone-300 hover:bg-stone-50 transition-all duration-200 active:scale-95">Letters</button>
+        <button data-filter="Poems" class="box-filter-btn px-3 py-1 rounded-full bg-white text-stone-700 border border-stone-300 hover:bg-stone-50 transition-all duration-200 active:scale-95">Poems</button>
+        <button data-filter="Drafts" class="box-filter-btn px-3 py-1 rounded-full bg-white text-stone-700 border border-stone-300 hover:bg-stone-50 transition-all duration-200 active:scale-95">Drafts</button>
+      </div>
+
+      <!-- Notes List -->
+      <div id="box-notes-list" class="p-5 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Export & Print -->
+  <div id="modal-export" class="modal-backdrop-anim fixed inset-0 z-50 hidden items-center justify-center bg-stone-950/60 backdrop-blur-md p-4">
+    <div class="modal-card-anim bg-[#f8f5ee] border border-stone-300 rounded-2xl shadow-2xl w-full max-w-md p-5">
+      <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+        <h3 class="font-serif text-lg font-medium text-stone-800">Export & Share Sheet</h3>
+        <button id="btn-close-export" class="p-1.5 rounded-full hover:bg-stone-200/70 hover:rotate-90 transition-all duration-200 text-stone-600">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-3">
+        <div class="p-3.5 rounded-xl bg-white border border-stone-300 transition-all duration-200 hover:shadow-md space-y-3">
+          <button id="btn-export-image" class="w-full flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-amber-100 text-amber-800 group-hover:scale-110 transition-transform">
+                <i data-lucide="image" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-stone-800">Save Aesthetic Image (PNG)</div>
+                <div class="text-xs text-stone-500">Centered paper with textures, ink & flower</div>
+              </div>
+            </div>
+            <i data-lucide="download" class="w-4 h-4 text-stone-400 group-hover:translate-y-0.5 transition-transform"></i>
+          </button>
+
+          <!-- Aspect Ratio Selector Pills -->
+          <div class="pt-2 border-t border-stone-100 flex items-center justify-between gap-1.5 text-[11px]">
+            <span class="text-stone-400 font-medium">Ratio:</span>
+            <div class="flex items-center gap-1.5">
+              <button type="button" data-ratio="auto" class="export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-800 text-amber-50 font-medium transition-all active:scale-95">Original</button>
+              <button type="button" data-ratio="1:1" class="export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200/80 font-medium transition-all active:scale-95">1:1</button>
+              <button type="button" data-ratio="3:4" class="export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200/80 font-medium transition-all active:scale-95">3:4</button>
+              <button type="button" data-ratio="9:16" class="export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200/80 font-medium transition-all active:scale-95">9:16</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-export-print" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-stone-50 hover:-translate-y-0.5 hover:shadow-md border border-stone-300 transition-all duration-200 active:scale-[0.99] text-left group">
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-stone-100 text-stone-700 group-hover:scale-110 transition-transform">
+              <i data-lucide="printer" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-stone-800">Print / Save as PDF</div>
+              <div class="text-xs text-stone-500">Clean A4 / US Letter print layout</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-up-right" class="w-4 h-4 text-stone-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </button>
+
+        <button id="btn-export-copy" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-stone-50 hover:-translate-y-0.5 hover:shadow-md border border-stone-300 transition-all duration-200 active:scale-[0.99] text-left group">
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-stone-100 text-stone-700 group-hover:scale-110 transition-transform">
+              <i data-lucide="copy" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-stone-800">Copy Plain Text</div>
+              <div class="text-xs text-stone-500">Copy your typed letter to clipboard</div>
+            </div>
+          </div>
+          <i data-lucide="check" class="w-4 h-4 text-stone-400 group-hover:scale-110 transition-transform"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden File Input for Photo Stamp -->
+  <input type="file" id="photo-upload-input" accept="image/*" class="hidden" />
+
+  <script>
+    /**
+     * PLATEN — PAPER & INK (Animated Studio Edition)
+     * Features tactile mechanical typewriter sound synthesis, realistic ink ribbon wear,
+     * moving carriage rail with spinning spools, pressed flowers, wax seals,
+     * and fluid spring-animated UI transitions.
+     */
+
+    // --- 1. WEB AUDIO API MECHANICAL TYPEWRITER ENGINE ---
+    class TypewriterAudio {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      // Crisp mechanical hammer strike on platen roller
+      playKeyStrike() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+
+        const bufferSize = this.ctx.sampleRate * 0.035;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.008));
+        }
+
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1100 + Math.random() * 450;
+        filter.Q.value = 1.8;
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.45, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.035);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+        noise.start(now);
+
+        const osc = this.ctx.createOscillator();
+        const oscGain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(145 + Math.random() * 25, now);
+        osc.frequency.exponentialRampToValueAtTime(48, now + 0.03);
+
+        oscGain.gain.setValueAtTime(0.28, now);
+        oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+        osc.connect(oscGain);
+        oscGain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.035);
+      }
+
+      playSpacebar() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(110, now);
+        osc.frequency.exponentialRampToValueAtTime(38, now + 0.05);
+
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      }
+
+      playCarriageReturn() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+
+        const frequencies = [2180, 4390];
+        frequencies.forEach((freq, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+
+          gain.gain.setValueAtTime(idx === 0 ? 0.22 : 0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.75);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.8);
+        });
+      }
+    }
+
+    const soundEngine = new TypewriterAudio();
+
+    // --- 2. CURATED FIRST LINES & SIMPLE QUOTES ---
+    const FIRST_LINES = [
+      "“Write what should not be forgotten.” — Isabel Allende",
+      "“Start writing, no matter what. The water does not flow until the faucet is turned on.”",
+      "“Simplicity is about subtracting the obvious and adding the meaningful.”",
+      "“The scariest moment is always just before you start.” — Stephen King",
+      "“A word after a word after a word is power.” — Margaret Atwood",
+      "“Quiet mornings and warm coffee make the best pages.”",
+      "“Not all those who wander are lost.” — J.R.R. Tolkien",
+      "“Collect moments, not things.”",
+      "“The rain had been falling since Tuesday, softening the ink on every letter I tried to send.”",
+      "“If you find this folded inside the blue coat, please don't read it until the train leaves the station.”",
+      "“October always smells like damp cedar, burnt toast, and unfinished promises.”",
+      "“Dear future self, I hope you finally learned how to sit still without checking the clock.”",
+      "“At 2:14 AM, the typewriter on the corner desk struck a single key all by itself.”",
+      "“We packed two suitcases, three books, and a pressed marigold from the garden gate.”",
+      "“She kept every ticket stub in a tin box labeled 'Proof That We Were Here.'”",
+      "“The first snowfall arrived without a sound, erasing the footprints along the pier.”"
+    ];
+
+    // --- 3. SVG PRESSED FLOWERS & CHARMS ---
+    const PRESSED_FLOWERS = {
+      none: { label: 'None', svg: '<span class="text-[10px] text-stone-400 border border-dashed border-stone-300 px-2 py-0.5 rounded-full">+ Flower</span>' },
+      marigold: {
+        label: 'Marigold',
+        svg: `<svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 33C18 26 17 21 18 16" stroke="#5c6b4d" stroke-width="1.5" stroke-linecap="round"/><path d="M18 25C14 23 12 20 13 18C15 19 17 22 18 25Z" fill="#6e7f5b"/><circle cx="18" cy="12" r="7" fill="#e08e26" fill-opacity="0.85"/><circle cx="18" cy="12" r="4.5" fill="#c26315"/><circle cx="18" cy="12" r="2" fill="#f6c453"/></svg>`
+      },
+      lavender: {
+        label: 'Lavender',
+        svg: `<svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 33L18 10" stroke="#5f7153" stroke-width="1.4" stroke-linecap="round"/><ellipse cx="15.5" cy="12" rx="2.2" ry="3.2" transform="rotate(-25 15.5 12)" fill="#7e6ba8"/><ellipse cx="20.5" cy="14" rx="2.2" ry="3.2" transform="rotate(25 20.5 14)" fill="#8e7cc3"/><ellipse cx="15.5" cy="17" rx="2.2" ry="3.2" transform="rotate(-25 15.5 17)" fill="#6d599a"/><ellipse cx="20.5" cy="19" rx="2.2" ry="3.2" transform="rotate(25 20.5 19)" fill="#7e6ba8"/><ellipse cx="18" cy="8.5" rx="2" ry="3" fill="#9b89d4"/></svg>`
+      },
+      sakura: {
+        label: 'Blossom',
+        svg: `<svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 33C19 26 18 20 18 16" stroke="#6d5c54" stroke-width="1.4" stroke-linecap="round"/><circle cx="18" cy="10" r="4" fill="#f4b8c4"/><circle cx="23" cy="14" r="4" fill="#f7cad3"/><circle cx="21" cy="20" r="4" fill="#f4b8c4"/><circle cx="15" cy="20" r="4" fill="#f7cad3"/><circle cx="13" cy="14" r="4" fill="#f4b8c4"/><circle cx="18" cy="15" r="2.2" fill="#b84a62"/></svg>`
+      },
+      fern: {
+        label: 'Sage Fern',
+        svg: `<svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 33C17 24 18 14 20 6" stroke="#4c6444" stroke-width="1.4" stroke-linecap="round"/><path d="M18 26L12 23M18 22L11 18M18 18L12 13M19 13L14 9M18 25L24 22M18 20L25 16M19 15L24 11" stroke="#68855c" stroke-width="2.2" stroke-linecap="round"/></svg>`
+      },
+      forgetmenot: {
+        label: 'Bluebell',
+        svg: `<svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 33L18 16" stroke="#5c6b4d" stroke-width="1.4" stroke-linecap="round"/><circle cx="18" cy="10" r="3.8" fill="#6b9ac4"/><circle cx="22.5" cy="14" r="3.8" fill="#7aa8d1"/><circle cx="13.5" cy="14" r="3.8" fill="#7aa8d1"/><circle cx="18" cy="17.5" r="3.8" fill="#6b9ac4"/><circle cx="18" cy="13.8" r="2" fill="#f2d06b"/></svg>`
+      }
+    };
+
+    const CHARMS = [
+      { id: 'key', emoji: '🗝️', name: 'Brass Key' },
+      { id: 'moon', emoji: '🌙', name: 'Crescent' },
+      { id: 'feather', emoji: '🪶', name: 'Quill' },
+      { id: 'cat', emoji: '🐈‍⬛', name: 'Black Cat' },
+      { id: 'clover', emoji: '🍀', name: 'Clover' },
+      { id: 'none', emoji: '', name: 'None' }
+    ];
+
+    // --- 4. APPLICATION STATE ---
+    let state = {
+      notes: [],
+      currentNoteId: null,
+      activeDrawer: 'paper',
+      boxFilter: 'All',
+      soundEnabled: true,
+      showRail: true
+    };
+
+    function createDefaultNote() {
+      return {
+        id: 'note_' + Date.now(),
+        content: '',
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase(),
+        divider: 'Journal',
+        paper: 'paper-cream',
+        curved: true,
+        letterhead: 'FROM THE DESK OF oLd tYP3',
+        font: 'font-typewriter-vintage',
+        fontSize: 17,
+        textAlign: 'left',
+        inkColor: 'ink-black',
+        inkWear: 'wear-fresh',
+        flower: 'marigold',
+        charm: 'key',
+        waxSeal: false,
+        photoStamp: '',
+        photoLabel: 'Memory Stamp',
+        photoX: null,
+        photoY: null,
+        photoWidth: 148
+      };
+    }
+
+    // --- 5. DOM REFERENCES ---
+    const editor = document.getElementById('typewriter-editor');
+    const paperSheet = document.getElementById('paper-sheet');
+    const capsule = document.getElementById('typewriter-capsule');
+    const capsuleCol = document.getElementById('capsule-col-indicator');
+    const hangingCharm = document.getElementById('hanging-charm');
+    const typebarStriker = document.getElementById('typebar-striker');
+    const spoolLeft = document.getElementById('spool-left');
+    const spoolRight = document.getElementById('spool-right');
+    const waxSealSlot = document.getElementById('wax-seal-slot');
+    const flowerSlot = document.getElementById('pressed-flower-slot');
+    const letterheadDisplay = document.getElementById('letterhead-display');
+    const dateDisplay = document.getElementById('note-date-display');
+    const dividerDisplay = document.getElementById('note-divider-display');
+    const charCounter = document.getElementById('char-counter');
+    const charProgress = document.getElementById('char-progress');
+    const drawerContent = document.getElementById('drawer-content');
+    const photoContainer = document.getElementById('photo-stamp-container');
+    const photoImg = document.getElementById('photo-stamp-img');
+    const photoLabelInput = document.getElementById('photo-stamp-label');
+    let spoolAngle = 0;
+
+    // --- 6. PERSISTENCE & INITIALIZATION ---
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('platen_web_state_v1');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          state.notes = parsed.notes || [];
+          state.currentNoteId = parsed.currentNoteId || null;
+          state.soundEnabled = parsed.soundEnabled !== undefined ? parsed.soundEnabled : true;
+        }
+      } catch (e) {
+        console.warn('Could not load saved state:', e);
+      }
+
+      if (!state.notes.length) {
+        const welcomeNote = createDefaultNote();
+        welcomeNote.content = "Welcome to oLd tYP3.\n\nStrike the keys to hear the mechanical hammers, switch ink ribbons below, or decorate your page with pressed flowers and wax seals.";
+        state.notes.push(welcomeNote);
+        state.currentNoteId = welcomeNote.id;
+      }
+
+      if (!state.notes.find(n => n.id === state.currentNoteId)) {
+        state.currentNoteId = state.notes[0].id;
+      }
+
+      soundEngine.enabled = state.soundEnabled;
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('platen_web_state_v1', JSON.stringify({
+          notes: state.notes,
+          currentNoteId: state.currentNoteId,
+          soundEnabled: state.soundEnabled
+        }));
+        document.getElementById('box-count-badge').textContent = state.notes.length;
+      } catch (e) {
+        console.warn('Could not save state:', e);
+      }
+    }
+
+    function getCurrentNote() {
+      return state.notes.find(n => n.id === state.currentNoteId);
+    }
+
+    // --- 7. RENDERING CURRENT NOTE & CUSTOMIZATIONS ---
+    function triggerPaperRollAnimation() {
+      paperSheet.classList.remove('paper-rolling');
+      void paperSheet.offsetWidth;
+      paperSheet.classList.add('paper-rolling');
+    }
+
+    function renderCurrentNote() {
+      const note = getCurrentNote();
+      if (!note) return;
+
+      paperSheet.className = `relative w-full max-w-2xl min-h-[58vh] sm:min-h-[64vh] px-6 sm:px-14 py-10 sm:py-14 transition-all duration-500 flex flex-col justify-between border border-stone-300/60 overflow-hidden ${note.paper} ${note.curved ? 'paper-curved' : 'rounded-md'}`;
+
+      const fontSize = note.fontSize || 17;
+      const textAlign = note.textAlign || 'left';
+      const alignClass = {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+        justify: 'text-justify'
+      }[textAlign] || 'text-left';
+
+      editor.value = note.content;
+      editor.style.fontSize = `${fontSize}px`;
+      editor.style.lineHeight = `${Math.round(fontSize * 1.85)}px`;
+      editor.className = `relative z-10 w-full bg-transparent resize-none overflow-hidden break-words whitespace-pre-wrap border-none outline-none tracking-wide placeholder:text-stone-400/60 transition-colors duration-300 ${note.font} ${note.inkColor} ${note.inkWear} ${alignClass}`;
+
+      autoResizeEditor();
+
+      letterheadDisplay.textContent = note.letterhead || '';
+      letterheadDisplay.style.display = note.letterhead ? 'block' : 'none';
+      dateDisplay.textContent = note.date;
+      dividerDisplay.textContent = note.divider;
+
+      const flowerObj = PRESSED_FLOWERS[note.flower] || PRESSED_FLOWERS.none;
+      flowerSlot.innerHTML = `<div class="flower-bloom-anim">${flowerObj.svg}</div>`;
+
+      const charmObj = CHARMS.find(c => c.id === note.charm) || CHARMS[0];
+      hangingCharm.textContent = charmObj.emoji;
+
+      if (note.waxSeal) {
+        waxSealSlot.classList.remove('hidden');
+      } else {
+        waxSealSlot.classList.add('hidden');
+      }
+
+      if (note.photoStamp) {
+        photoImg.src = note.photoStamp;
+        photoLabelInput.value = note.photoLabel !== undefined ? note.photoLabel : 'Memory Stamp';
+        photoContainer.style.width = `${note.photoWidth || 148}px`;
+        if (typeof note.photoX === 'number' && typeof note.photoY === 'number') {
+          photoContainer.style.left = `${note.photoX}px`;
+          photoContainer.style.top = `${note.photoY}px`;
+          photoContainer.style.right = 'auto';
+        } else {
+          photoContainer.style.left = 'auto';
+          photoContainer.style.right = '32px';
+          photoContainer.style.top = '76px';
+        }
+        photoContainer.classList.remove('hidden');
+      } else {
+        photoContainer.classList.add('hidden');
+      }
+
+      const iconSound = document.getElementById('icon-sound');
+      iconSound.setAttribute('data-lucide', state.soundEnabled ? 'volume-2' : 'volume-x');
+
+      updateCharacterCount();
+      updateCarriagePosition();
+      renderDrawerControls();
+      lucide.createIcons();
+    }
+
+    function autoResizeEditor() {
+      editor.style.height = 'auto';
+      editor.style.height = `${Math.max(300, editor.scrollHeight)}px`;
+    }
+
+    function updateCharacterCount() {
+      const len = editor.value.length;
+      charCounter.textContent = `${len} / 3000`;
+      const pct = Math.min(100, (len / 3000) * 100);
+      charProgress.style.width = `${pct}%`;
+    }
+
+    function updateCarriagePosition() {
+      const pos = editor.selectionStart || 0;
+      const textBefore = editor.value.substring(0, pos);
+      const currentLine = textBefore.split('\n').pop() || '';
+      const col = currentLine.length;
+
+      const maxCols = 62;
+      const ratio = Math.min(1, col / maxCols);
+      const leftPercent = 6 + ratio * 82;
+      capsule.style.left = `${leftPercent}%`;
+      capsuleCol.textContent = String(col + 1).padStart(3, '0');
+    }
+
+    function triggerCharmSwing() {
+      hangingCharm.classList.remove('charm-strike');
+      void hangingCharm.offsetWidth;
+      hangingCharm.classList.add('charm-strike');
+
+      // Animate typebar hammer strike & rotate ribbon spools
+      if (typebarStriker) {
+        typebarStriker.classList.remove('typebar-active');
+        void typebarStriker.offsetWidth;
+        typebarStriker.classList.add('typebar-active');
+      }
+      spoolAngle = (spoolAngle + 28) % 360;
+      if (spoolLeft) spoolLeft.style.transform = `rotate(${spoolAngle}deg)`;
+      if (spoolRight) spoolRight.style.transform = `rotate(${spoolAngle}deg)`;
+    }
+
+    function showToast(msg, icon = '✦') {
+      const banner = document.getElementById('toast-banner');
+      document.getElementById('toast-message').textContent = msg;
+      document.getElementById('toast-icon').textContent = icon;
+      banner.classList.remove('opacity-0', 'translate-y-[-10px]');
+      banner.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        banner.classList.add('opacity-0', 'translate-y-[-10px]');
+        banner.classList.remove('opacity-100', 'translate-y-0');
+      }, 2200);
+    }
+
+    // --- 8. BOTTOM CUSTOMIZATION DRAWER CONTROLS ---
+    function renderDrawerControls() {
+      const note = getCurrentNote();
+      if (!note) return;
+
+      document.querySelectorAll('.drawer-tab').forEach(btn => {
+        const isActive = btn.dataset.drawer === state.activeDrawer;
+        btn.className = isActive
+          ? 'drawer-tab active flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-stone-800 text-amber-50 shadow-sm scale-[1.03] transition-all duration-200 active:scale-95'
+          : 'drawer-tab flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-500/15 hover:-translate-y-0.5 transition-all duration-200 active:scale-95';
+      });
+
+      let html = '';
+
+      if (state.activeDrawer === 'paper') {
+        const papers = [
+          { id: 'paper-cream', label: 'Cream', swatch: 'bg-[#fcf9f2]' },
+          { id: 'paper-cotton', label: 'Cotton', swatch: 'bg-[#f4f1ea]' },
+          { id: 'paper-aged', label: 'Vintage', swatch: 'bg-[#efe4ce]' },
+          { id: 'paper-ruled', label: 'Ruled', swatch: 'bg-[#faf8f5]' }
+        ];
+        html += papers.map((p, idx) => `
+          <button style="animation-delay: ${idx * 35}ms" onclick="updateNoteProp('paper', '${p.id}')" class="drawer-item-anim flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.paper === p.id ? 'border-amber-700 bg-amber-50/90 font-medium text-stone-900 shadow-sm' : 'border-stone-300/80 bg-white/90 text-stone-700 hover:bg-white'}">
+            <span class="w-3 h-3 rounded-full border border-stone-400 ${p.swatch}"></span>
+            <span>${p.label}</span>
+          </button>
+        `).join('');
+
+        html += `
+          <button style="animation-delay: 140ms" onclick="updateNoteProp('curved', ${!note.curved})" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.curved ? 'border-stone-800 bg-stone-800 text-white' : 'border-stone-300/80 bg-white/90 text-stone-700'}">
+            ${note.curved ? 'Curved' : 'Flat'}
+          </button>
+          <select style="animation-delay: 175ms" onchange="updateNoteProp('divider', this.value)" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border border-stone-300/80 bg-white/90 text-stone-700 outline-none transition-all duration-200 hover:-translate-y-0.5">
+            ${['Journal', 'Letters', 'Poems', 'Drafts'].map(d => `<option value="${d}" ${note.divider === d ? 'selected' : ''}>📂 ${d}</option>`).join('')}
+          </select>
+        `;
+      } else if (state.activeDrawer === 'ribbon') {
+        const inks = [
+          { id: 'ink-black', label: 'Carbon', dot: 'bg-[#1f1d1b]' },
+          { id: 'ink-crimson', label: 'Crimson', dot: 'bg-[#8c2323]' },
+          { id: 'ink-navy', label: 'Midnight', dot: 'bg-[#1c314e]' },
+          { id: 'ink-forest', label: 'Forest', dot: 'bg-[#213d2b]' }
+        ];
+        html += inks.map((i, idx) => `
+          <button style="animation-delay: ${idx * 35}ms" onclick="updateNoteProp('inkColor', '${i.id}')" class="drawer-item-anim flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.inkColor === i.id ? 'border-stone-800 bg-amber-50/90 font-medium text-stone-900 shadow-sm' : 'border-stone-300/80 bg-white/90 text-stone-700'}">
+            <span class="w-2.5 h-2.5 rounded-full ${i.dot}"></span>
+            <span>${i.label}</span>
+          </button>
+        `).join('');
+
+        html += `
+          <div style="animation-delay: 140ms" class="drawer-item-anim flex items-center rounded-lg border border-stone-300/80 bg-white/90 overflow-hidden" title="Text Size">
+            <button type="button" onclick="adjustFontSize(-2)" class="px-2.5 py-1.5 text-stone-700 hover:bg-stone-100 active:scale-90 transition-all font-bold">−</button>
+            <span class="px-2 py-1 text-[11px] font-mono text-stone-600 select-none">${note.fontSize || 17}px</span>
+            <button type="button" onclick="adjustFontSize(2)" class="px-2.5 py-1.5 text-stone-700 hover:bg-stone-100 active:scale-90 transition-all font-bold">+</button>
+          </div>
+          <div style="animation-delay: 165ms" class="drawer-item-anim flex items-center rounded-lg border border-stone-300/80 bg-white/90 p-0.5 gap-0.5" title="Text Alignment">
+            ${[
+              { id: 'left', icon: 'align-left', label: 'Align Left' },
+              { id: 'center', icon: 'align-center', label: 'Align Center' },
+              { id: 'right', icon: 'align-right', label: 'Align Right' },
+              { id: 'justify', icon: 'align-justify', label: 'Justify' }
+            ].map(a => `
+              <button type="button" onclick="updateNoteProp('textAlign', '${a.id}')" title="${a.label}" class="p-1.5 rounded-md transition-all active:scale-90 ${(note.textAlign || 'left') === a.id ? 'bg-stone-800 text-amber-50 shadow-sm' : 'text-stone-600 hover:bg-stone-100'}">
+                <i data-lucide="${a.icon}" class="w-3.5 h-3.5"></i>
+              </button>
+            `).join('')}
+          </div>
+          <select style="animation-delay: 190ms" onchange="updateNoteProp('inkWear', this.value)" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border border-stone-300/80 bg-white/90 text-stone-700 outline-none transition-all duration-200 hover:-translate-y-0.5" title="Ink Ribbon Wear">
+            <option value="wear-fresh" ${note.inkWear === 'wear-fresh' ? 'selected' : ''}>Ribbon: Fresh</option>
+            <option value="wear-seasoned" ${note.inkWear === 'wear-seasoned' ? 'selected' : ''}>Ribbon: Seasoned</option>
+            <option value="wear-worn" ${note.inkWear === 'wear-worn' ? 'selected' : ''}>Ribbon: Worn</option>
+            <option value="wear-clean" ${note.inkWear === 'wear-clean' ? 'selected' : ''}>Ribbon: Clean</option>
+          </select>
+          <select style="animation-delay: 215ms" onchange="updateNoteProp('font', this.value)" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border border-stone-300/80 bg-white/90 text-stone-700 outline-none transition-all duration-200 hover:-translate-y-0.5" title="Typeface">
+            <option value="font-typewriter-vintage" ${note.font === 'font-typewriter-vintage' ? 'selected' : ''}>Elite Type</option>
+            <option value="font-typewriter-clean" ${note.font === 'font-typewriter-clean' ? 'selected' : ''}>Courier Prime</option>
+            <option value="font-typewriter-serif" ${note.font === 'font-typewriter-serif' ? 'selected' : ''}>Editorial Serif</option>
+          </select>
+        `;
+      } else if (state.activeDrawer === 'decor') {
+        html += Object.entries(PRESSED_FLOWERS).map(([key, val], idx) => `
+          <button style="animation-delay: ${idx * 30}ms" onclick="updateNoteProp('flower', '${key}')" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.flower === key ? 'border-amber-700 bg-amber-50/90 font-medium text-stone-900 shadow-sm' : 'border-stone-300/80 bg-white/90 text-stone-700'}">
+            ${val.label}
+          </button>
+        `).join('');
+
+        html += `
+          <select style="animation-delay: 180ms" onchange="updateNoteProp('charm', this.value)" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border border-stone-300/80 bg-white/90 text-stone-700 outline-none transition-all duration-200 hover:-translate-y-0.5" title="Rail Charm">
+            ${CHARMS.map(c => `<option value="${c.id}" ${note.charm === c.id ? 'selected' : ''}>${c.emoji || '∅'} ${c.name}</option>`).join('')}
+          </select>
+          <button style="animation-delay: 210ms" onclick="updateNoteProp('waxSeal', ${!note.waxSeal})" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.waxSeal ? 'border-red-900 bg-red-900 text-amber-100 font-medium shadow-sm' : 'border-stone-300/80 bg-white/90 text-stone-700'}">
+            ${note.waxSeal ? 'Wax Seal: ON' : 'Wax Seal'}
+          </button>
+          <button style="animation-delay: 240ms" onclick="document.getElementById('photo-upload-input').click()" class="drawer-item-anim flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-stone-300/80 bg-white/90 hover:bg-white text-stone-700 transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+            <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+            <span>Photo Stamp</span>
+          </button>
+        `;
+      } else if (state.activeDrawer === 'stationery') {
+        const headers = [
+          { label: 'oLd tYP3 Desk', value: 'FROM THE DESK OF oLd tYP3' },
+          { label: 'Correspondence', value: 'PERSONAL CORRESPONDENCE' },
+          { label: 'Midnight Notes', value: 'MIDNIGHT THOUGHTS & NOTES' },
+          { label: 'Air Mail', value: 'SENT BY AIR MAIL' },
+          { label: 'Blank Header', value: '' }
+        ];
+        html += headers.map((h, idx) => `
+          <button style="animation-delay: ${idx * 35}ms" onclick="updateNoteProp('letterhead', '${h.value}')" class="drawer-item-anim px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${note.letterhead === h.value ? 'border-amber-700 bg-amber-50/90 font-medium text-stone-900 shadow-sm' : 'border-stone-300/80 bg-white/90 text-stone-700 hover:bg-white'}">
+            ${h.label}
+          </button>
+        `).join('');
+      }
+
+      drawerContent.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    window.updateNoteProp = function(prop, value) {
+      const note = getCurrentNote();
+      if (!note) return;
+      note[prop] = value;
+      saveState();
+      renderCurrentNote();
+    };
+
+    window.adjustFontSize = function(delta) {
+      const note = getCurrentNote();
+      if (!note) return;
+      const current = note.fontSize || 17;
+      const next = Math.min(30, Math.max(12, current + delta));
+      if (next !== current) {
+        updateNoteProp('fontSize', next);
+        soundEngine.playKeyStrike();
+      }
+    };
+
+    // --- 9. EVENT LISTENERS ---
+    editor.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        soundEngine.playCarriageReturn();
+        triggerCharmSwing();
+      } else if (e.key === ' ') {
+        soundEngine.playSpacebar();
+      } else if (e.key.length === 1 || e.key === 'Backspace') {
+        soundEngine.playKeyStrike();
+        triggerCharmSwing();
+      }
+    });
+
+    editor.addEventListener('input', () => {
+      const note = getCurrentNote();
+      if (note) {
+        note.content = editor.value;
+        saveState();
+      }
+      autoResizeEditor();
+      updateCharacterCount();
+      updateCarriagePosition();
+    });
+
+    window.addEventListener('resize', autoResizeEditor);
+
+    editor.addEventListener('click', updateCarriagePosition);
+    editor.addEventListener('keyup', updateCarriagePosition);
+
+    // Capsule tap hides/shows rail cleanly
+    capsule.addEventListener('click', () => {
+      triggerCharmSwing();
+      soundEngine.playCarriageReturn();
+      showToast('Carriage reset');
+    });
+
+    // Cycle pressed flower on direct click
+    flowerSlot.addEventListener('click', () => {
+      const note = getCurrentNote();
+      const keys = Object.keys(PRESSED_FLOWERS);
+      const next = keys[(keys.indexOf(note.flower) + 1) % keys.length];
+      updateNoteProp('flower', next);
+    });
+
+    // Bottom Drawer Tabs
+    document.querySelectorAll('.drawer-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.activeDrawer = btn.dataset.drawer;
+        renderDrawerControls();
+      });
+    });
+
+    // Top Buttons
+    document.getElementById('btn-toggle-sound').addEventListener('click', () => {
+      state.soundEnabled = !state.soundEnabled;
+      soundEngine.enabled = state.soundEnabled;
+      if (state.soundEnabled) soundEngine.playKeyStrike();
+      saveState();
+      renderCurrentNote();
+      showToast(state.soundEnabled ? 'Mechanical sound ON' : 'Mechanical sound MUTED');
+    });
+
+    document.getElementById('btn-new-note').addEventListener('click', () => {
+      const fresh = createDefaultNote();
+      state.notes.unshift(fresh);
+      state.currentNoteId = fresh.id;
+      saveState();
+      triggerPaperRollAnimation();
+      renderCurrentNote();
+      soundEngine.playCarriageReturn();
+      showToast('Fresh sheet loaded into platen', '📄');
+      editor.focus();
+    });
+
+    document.getElementById('btn-first-line').addEventListener('click', () => {
+      const line = FIRST_LINES[Math.floor(Math.random() * FIRST_LINES.length)];
+      const note = getCurrentNote();
+      if (!note) return;
+      note.content = note.content ? `${note.content}\n\n${line}` : line;
+      saveState();
+      renderCurrentNote();
+      soundEngine.playKeyStrike();
+      showToast('First line prompt added', '✨');
+      editor.focus();
+    });
+
+    // Photo Stamp Upload
+    document.getElementById('photo-upload-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const note = getCurrentNote();
+        if (note) {
+          note.photoStamp = ev.target.result;
+          if (!note.photoWidth) note.photoWidth = 148;
+          saveState();
+          renderCurrentNote();
+        }
+        showToast('Memory sticker attached — drag or resize freely', '📷');
+      };
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    });
+
+    document.getElementById('btn-remove-photo').addEventListener('click', () => {
+      const note = getCurrentNote();
+      if (note) {
+        note.photoStamp = '';
+        note.photoX = null;
+        note.photoY = null;
+        note.photoWidth = 148;
+        saveState();
+        renderCurrentNote();
+      }
+      showToast('Photo stamp removed');
+    });
+
+    photoLabelInput.addEventListener('input', () => {
+      const note = getCurrentNote();
+      if (note) {
+        note.photoLabel = photoLabelInput.value;
+        saveState();
+      }
+    });
+
+    // Draggable & Resizable Sticker Stamp Interactions (Mouse + Touch)
+    (function initPhotoStickerInteractions() {
+      const resizeHandle = document.getElementById('photo-stamp-resize');
+      let mode = null; // 'drag' | 'resize'
+      let startX = 0, startY = 0;
+      let startLeft = 0, startTop = 0, startWidth = 148;
+
+      function getClientXY(e) {
+        if (e.touches && e.touches.length) {
+          return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        return { x: e.clientX, y: e.clientY };
+      }
+
+      function onStart(e, interactionMode) {
+        if (e.target === photoLabelInput || e.target.id === 'btn-remove-photo') return;
+        e.preventDefault();
+        mode = interactionMode;
+        const pt = getClientXY(e);
+        startX = pt.x;
+        startY = pt.y;
+
+        const paperRect = paperSheet.getBoundingClientRect();
+        const stampRect = photoContainer.getBoundingClientRect();
+        startLeft = stampRect.left - paperRect.left;
+        startTop = stampRect.top - paperRect.top;
+        startWidth = stampRect.width;
+
+        photoContainer.style.left = `${startLeft}px`;
+        photoContainer.style.top = `${startTop}px`;
+        photoContainer.style.right = 'auto';
+      }
+
+      function onMove(e) {
+        if (!mode) return;
+        const pt = getClientXY(e);
+        const dx = pt.x - startX;
+        const dy = pt.y - startY;
+        const paperRect = paperSheet.getBoundingClientRect();
+
+        if (mode === 'drag') {
+          const maxLeft = Math.max(0, paperRect.width - photoContainer.offsetWidth);
+          const maxTop = Math.max(0, paperRect.height - photoContainer.offsetHeight);
+          const nextLeft = Math.min(maxLeft, Math.max(0, startLeft + dx));
+          const nextTop = Math.min(maxTop, Math.max(0, startTop + dy));
+          photoContainer.style.left = `${nextLeft}px`;
+          photoContainer.style.top = `${nextTop}px`;
+        } else if (mode === 'resize') {
+          const maxAllowedWidth = Math.min(340, paperRect.width - startLeft - 12);
+          const nextWidth = Math.min(Math.max(96, startWidth + dx), Math.max(96, maxAllowedWidth));
+          photoContainer.style.width = `${nextWidth}px`;
+        }
+      }
+
+      function onEnd() {
+        if (!mode) return;
+        const note = getCurrentNote();
+        if (note) {
+          note.photoX = parseFloat(photoContainer.style.left) || 0;
+          note.photoY = parseFloat(photoContainer.style.top) || 0;
+          note.photoWidth = parseFloat(photoContainer.style.width) || 148;
+          saveState();
+        }
+        mode = null;
+      }
+
+      photoContainer.addEventListener('mousedown', (e) => onStart(e, 'drag'));
+      photoContainer.addEventListener('touchstart', (e) => onStart(e, 'drag'), { passive: false });
+
+      resizeHandle.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        onStart(e, 'resize');
+      });
+      resizeHandle.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        onStart(e, 'resize');
+      }, { passive: false });
+
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('touchmove', onMove, { passive: false });
+      window.addEventListener('mouseup', onEnd);
+      window.addEventListener('touchend', onEnd);
+    })();
+
+    // --- 10. THE BOX (ARCHIVE MODAL) ---
+    const modalBox = document.getElementById('modal-box');
+    const boxNotesList = document.getElementById('box-notes-list');
+
+    function renderBoxModal() {
+      const filtered = state.boxFilter === 'All'
+        ? state.notes
+        : state.notes.filter(n => n.divider === state.boxFilter);
+      if (!filtered.length) {
+        boxNotesList.innerHTML = `<div class="col-span-full text-center py-10 text-stone-400 text-sm">No sheets filed under "${state.boxFilter}".</div>`;
+        return;
+      }
+      boxNotesList.innerHTML = filtered.map((n, idx) => {
+        const isCurrent = n.id === state.currentNoteId;
+        const preview = n.content.trim() || '(Blank sheet)';
+        const flowerSvg = (PRESSED_FLOWERS[n.flower] || PRESSED_FLOWERS.none).svg;
+        return `
+          <div style="animation-delay: ${idx * 45}ms" onclick="selectNoteFromBox('${n.id}')" class="drawer-item-anim cursor-pointer p-4 rounded-xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between gap-3 ${isCurrent ? 'bg-amber-50/80 border-amber-700 shadow-sm' : 'bg-white border-stone-200 hover:border-stone-400'}">
+            <div>
+              <div class="flex items-center justify-between text-[10px] font-mono text-stone-400 mb-1.5">
+                <span>${n.date} • ${n.divider.toUpperCase()}</span>
+                <div class="scale-75 origin-right">${n.flower !== 'none' ? flowerSvg : ''}</div>
+              </div>
+              <p class="font-typewriter-vintage text-xs text-stone-800 line-clamp-3 leading-relaxed">${preview.replace(/</g, '&lt;')}</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-stone-100 text-[11px]">
+              <span class="text-stone-400">${n.content.length} chars</span>
+              ${state.notes.length > 1 ? `<button onclick="event.stopPropagation(); deleteNoteFromBox('${n.id}')" class="text-rose-700 hover:underline">Discard</button>` : '<span class="text-amber-800 font-medium">Active</span>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.selectNoteFromBox = function(id) {
+      state.currentNoteId = id;
+      saveState();
+      triggerPaperRollAnimation();
+      renderCurrentNote();
+      modalBox.classList.add('hidden');
+      modalBox.classList.remove('flex');
+      soundEngine.playCarriageReturn();
+    };
+
+    window.deleteNoteFromBox = function(id) {
+      if (state.notes.length <= 1) return;
+      state.notes = state.notes.filter(n => n.id !== id);
+      if (state.currentNoteId === id) {
+        state.currentNoteId = state.notes[0].id;
+      }
+      saveState();
+      renderCurrentNote();
+      renderBoxModal();
+      showToast('Sheet discarded from The Box');
+    };
+
+    document.getElementById('btn-open-box').addEventListener('click', () => {
+      renderBoxModal();
+      modalBox.classList.remove('hidden');
+      modalBox.classList.add('flex');
+    });
+
+    document.getElementById('btn-close-box').addEventListener('click', () => {
+      modalBox.classList.add('hidden');
+      modalBox.classList.remove('flex');
+    });
+
+    document.querySelectorAll('.box-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.boxFilter = btn.dataset.filter;
+        document.querySelectorAll('.box-filter-btn').forEach(b => {
+          b.className = b.dataset.filter === state.boxFilter
+            ? 'box-filter-btn px-3 py-1 rounded-full bg-stone-800 text-white font-medium'
+            : 'box-filter-btn px-3 py-1 rounded-full bg-white text-stone-700 border border-stone-300 hover:bg-stone-50';
+        });
+        renderBoxModal();
+      });
+    });
+
+    // --- 11. EXPORT & SHARE MODAL ---
+    const modalExport = document.getElementById('modal-export');
+    let selectedExportRatio = 'auto';
+
+    document.querySelectorAll('.export-ratio-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedExportRatio = btn.dataset.ratio;
+        document.querySelectorAll('.export-ratio-btn').forEach(b => {
+          b.className = b.dataset.ratio === selectedExportRatio
+            ? 'export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-800 text-amber-50 font-medium transition-all active:scale-95'
+            : 'export-ratio-btn px-2.5 py-1 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200/80 font-medium transition-all active:scale-95';
+        });
+      });
+    });
+
+    document.getElementById('btn-export-modal').addEventListener('click', () => {
+      modalExport.classList.remove('hidden');
+      modalExport.classList.add('flex');
+    });
+
+    document.getElementById('btn-close-export').addEventListener('click', () => {
+      modalExport.classList.add('hidden');
+      modalExport.classList.remove('flex');
+    });
+
+    // Save Aesthetic PNG Image with Aspect Ratio Framing
+    document.getElementById('btn-export-image').addEventListener('click', async () => {
+      modalExport.classList.add('hidden');
+      modalExport.classList.remove('flex');
+      showToast(`Developing ${selectedExportRatio === 'auto' ? 'original' : selectedExportRatio} paper image...`, '🖼️');
+      try {
+        const paperCanvas = await html2canvas(paperSheet, {
+          scale: 2,
+          backgroundColor: null,
+          useCORS: true,
+          onclone: (clonedDoc) => {
+            const clonedPaper = clonedDoc.getElementById('paper-sheet');
+            const clonedTextarea = clonedDoc.getElementById('typewriter-editor');
+            const clonedPhotoInput = clonedDoc.getElementById('photo-stamp-label');
+
+            if (clonedPaper) {
+              clonedPaper.style.transform = 'none';
+              clonedPaper.style.animation = 'none';
+            }
+
+            // Replace <textarea> with a wrapped <div> so html2canvas renders all lines & alignment accurately
+            if (clonedTextarea) {
+              const mirrorDiv = clonedDoc.createElement('div');
+              mirrorDiv.className = clonedTextarea.className;
+              const computed = window.getComputedStyle(editor);
+              mirrorDiv.style.fontSize = computed.fontSize;
+              mirrorDiv.style.lineHeight = computed.lineHeight;
+              mirrorDiv.style.fontFamily = computed.fontFamily;
+              mirrorDiv.style.letterSpacing = computed.letterSpacing;
+              mirrorDiv.style.textAlign = computed.textAlign;
+              mirrorDiv.style.color = computed.color;
+              mirrorDiv.style.textShadow = computed.textShadow;
+              mirrorDiv.style.opacity = computed.opacity;
+              mirrorDiv.style.minHeight = computed.height;
+              mirrorDiv.style.whiteSpace = 'pre-wrap';
+              mirrorDiv.style.wordBreak = 'break-word';
+              mirrorDiv.style.overflowWrap = 'break-word';
+              mirrorDiv.textContent = editor.value || '';
+              clonedTextarea.parentNode.replaceChild(mirrorDiv, clonedTextarea);
+            }
+
+            // Replace caption <input> on sticker with a centered <div> so caption never clips
+            if (clonedPhotoInput) {
+              const labelDiv = clonedDoc.createElement('div');
+              labelDiv.className = clonedPhotoInput.className;
+              labelDiv.textContent = photoLabelInput.value || '';
+              clonedPhotoInput.parentNode.replaceChild(labelDiv, clonedPhotoInput);
+            }
+          }
+        });
+
+        let finalCanvas = paperCanvas;
+
+        if (selectedExportRatio !== 'auto') {
+          const [rw, rh] = selectedExportRatio.split(':').map(Number);
+          const targetAspect = rw / rh;
+          const padding = Math.round(Math.max(paperCanvas.width, paperCanvas.height) * 0.14);
+
+          let outW = paperCanvas.width + padding * 2;
+          let outH = paperCanvas.height + padding * 2;
+
+          if (outW / outH > targetAspect) {
+            outH = Math.round(outW / targetAspect);
+          } else {
+            outW = Math.round(outH * targetAspect);
+          }
+
+          finalCanvas = document.createElement('canvas');
+          finalCanvas.width = outW;
+          finalCanvas.height = outH;
+          const ctx = finalCanvas.getContext('2d');
+
+          // Warm studio desk mat gradient background
+          const bgGrad = ctx.createRadialGradient(outW * 0.5, outH * 0.2, 20, outW * 0.5, outH * 0.5, Math.max(outW, outH) * 0.8);
+          bgGrad.addColorStop(0, '#ebe5d9');
+          bgGrad.addColorStop(1, '#cfc5b4');
+          ctx.fillStyle = bgGrad;
+          ctx.fillRect(0, 0, outW, outH);
+
+          // Fit paper cleanly inside the chosen aspect ratio frame
+          const maxPaperW = outW - padding * 1.4;
+          const maxPaperH = outH - padding * 1.4;
+          const scale = Math.min(1, maxPaperW / paperCanvas.width, maxPaperH / paperCanvas.height);
+          const drawW = paperCanvas.width * scale;
+          const drawH = paperCanvas.height * scale;
+          const drawX = (outW - drawW) / 2;
+          const drawY = (outH - drawH) / 2;
+
+          ctx.save();
+          ctx.shadowColor = 'rgba(28, 22, 15, 0.25)';
+          ctx.shadowBlur = 36;
+          ctx.shadowOffsetY = 16;
+          ctx.drawImage(paperCanvas, drawX, drawY, drawW, drawH);
+          ctx.restore();
+        }
+
+        const link = document.createElement('a');
+        const suffix = selectedExportRatio === 'auto' ? 'original' : selectedExportRatio.replace(':', 'x');
+        link.download = `old-typ3-letter-${suffix}-${Date.now()}.png`;
+        link.href = finalCanvas.toDataURL('image/png');
+        link.click();
+        showToast('Image saved!', '✓');
+      } catch (err) {
+        showToast('Could not export image', '!');
+      }
+    });
+
+    // Print / Save PDF
+    document.getElementById('btn-export-print').addEventListener('click', () => {
+      modalExport.classList.add('hidden');
+      modalExport.classList.remove('flex');
+      window.print();
+    });
+
+    // Copy Plain Text
+    document.getElementById('btn-export-copy').addEventListener('click', () => {
+      editor.select();
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      modalExport.classList.add('hidden');
+      modalExport.classList.remove('flex');
+      showToast('Letter copied to clipboard', '📋');
+    });
+
+    // Boot Application
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      renderCurrentNote();
+      document.getElementById('box-count-badge').textContent = state.notes.length;
+    });
+  </script>
+</body>
+</html>
